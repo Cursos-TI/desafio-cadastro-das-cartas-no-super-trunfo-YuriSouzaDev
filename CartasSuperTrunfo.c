@@ -10,6 +10,8 @@ int main() {
     float areas[TOTAL_CIDADES];
     float pibs[TOTAL_CIDADES];
     int pontosTuristicos[TOTAL_CIDADES];
+    float densidade[TOTAL_CIDADES];
+    float pibPerCapita[TOTAL_CIDADES];
 
     for (int i = 0; i < TOTAL_CIDADES; i++) {
         printf("Cadastro da cidade %d/%d\n", i + 1, TOTAL_CIDADES);
@@ -29,6 +31,17 @@ int main() {
         printf("Número de pontos turísticos: ");
         scanf("%d", &pontosTuristicos[i]);
 
+        // Cálculos
+        if (areas[i] > 0)
+            densidade[i] = populacoes[i] / areas[i];
+        else
+            densidade[i] = 0;
+
+        if (populacoes[i] > 0)
+            pibPerCapita[i] = pibs[i] * 1000000 / populacoes[i];
+        else
+            pibPerCapita[i] = 0;
+
         printf("\n");
     }
 
@@ -38,7 +51,10 @@ int main() {
         printf("  População: %d\n", populacoes[i]);
         printf("  Área: %.2f km²\n", areas[i]);
         printf("  PIB: %.2f milhões\n", pibs[i]);
-        printf("  Pontos turísticos: %d\n\n", pontosTuristicos[i]);
+        printf("  Pontos turísticos: %d\n", pontosTuristicos[i]);
+        printf("  Densidade populacional: %.2f hab/km²\n", densidade[i]);
+        printf("  PIB per capita: %.2f\n", pibPerCapita[i]);
+        printf("\n");
     }
 
     return 0;
